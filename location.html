@@ -72,8 +72,9 @@ body { height: 100% }
     var latitude = 0;
     var longitude = 0;
     $('#mapComponent').locationpicker({
-      location: {latitude: 19.829667, longitude: 95.967915},
+      location: {latitude: 23.195732, longitude: 94.023979},
         radius: 500,
+        zoom: 15,
         inputBinding: {
         latitudeInput: $('#us3-lat'),
         longitudeInput: $('#us3-lon'),       
@@ -95,7 +96,7 @@ body { height: 100% }
         data: {lat: latitude, long: longitude}
       })
       .done(function(){
-        alert("saved!");
+        alert("Saved your input. Thanks for helping!");
       });
       
     });
