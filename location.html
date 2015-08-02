@@ -74,7 +74,7 @@ body { height: 100% }
     $('#mapComponent').locationpicker({
       location: {latitude: 23.195732, longitude: 94.023979},
         radius: 500,
-        zoom: 15,
+        zoom: 13,
         inputBinding: {
         latitudeInput: $('#us3-lat'),
         longitudeInput: $('#us3-lon'),       
@@ -83,13 +83,33 @@ body { height: 100% }
       enableAutocomplete: true,
       onchanged: function(currentLocation, radius, isMarkerDropped) {
         var mapContext = $(this).locationpicker('map');
-        mapContext.map.setZoom(15);
         latitude = currentLocation.latitude;
         longitude = currentLocation.longitude;
       } 
     });
 
+    var geocoder = new google.maps.Geocoder();
+
+    function codeAddress() {
+      var address = document.getElementById('place').value;
+      geocoder.geocode( { 'address': address}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          $.ajax({
+            type: "POST",
+            url: "save.php",
+            data: {lat: results[0].geometry.location.G, long: results[0].geometry.location.K}
+          })
+          .done(function(){
+            alert("Saved your input. Thanks for helping!");
+          });
+        } else {
+          alert('Geocode was not successful for the following reason: ' + status);
+        }
+      });
+    }
+
     $('#sendLocation').click(function() {
+      if(latitude != 0){
       $.ajax({
         type: "POST",
         url: "save.php",
@@ -98,6 +118,11 @@ body { height: 100% }
       .done(function(){
         alert("Saved your input. Thanks for helping!");
       });
+    }
+    else{
+      alert("Will try to geocode the location now.");
+      codeAddress();
+    }
       
     });
     </script> 
