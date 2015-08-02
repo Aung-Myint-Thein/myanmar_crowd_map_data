@@ -3,6 +3,7 @@ Each of you can help to collect the data of which area of Myanmar are flooded. V
 <h2>How to use:</h2>
 
 Home: This page will show which area of Myanmar is having flood. This page also shows how many data points we have collected.<br/>
+
 Home: ဒီစာမ်က္နာမွာေတာ့ ျမန္မာရဲ႕ ဘယ္ေနရာေတြ ေရႀကီးေနတယ္ဆိုတာကို ျပေပးထားပါတယ္။ users ေတြမွ data ထည့္ေပးထားမႈ အေရအတြက္ကိုလည္း ျပေပးထားပါတယ္။<br/>
 
 Send Location Data: This is for you to send the location data of which area of Myanmar you know has flood problem. Find the location using the search bar AND drag the location Pin to fine tune the flooded area location data.<br/>
