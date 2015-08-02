@@ -3,7 +3,7 @@ date_default_timezone_set('Asia/Singapore');
 
 $servername = "localhost";
 $username = "root";
-$password = "131654AMtnewton";
+$password = "";
 $dbname = "myanmar_data";
 
 // Create connection
