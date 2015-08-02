@@ -1,10 +1,5 @@
 <?php
-date_default_timezone_set('Asia/Singapore');
-
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "myanmar_data";
+include "database.php";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
