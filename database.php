@@ -5,6 +5,6 @@ date_default_timezone_set('Asia/Singapore');
 
 $servername = "xxxx";
 $username = "xxxx";
-$password = "xxxxx";
+$password = "xxxx";
 $dbname = "xxxx";
 ?>

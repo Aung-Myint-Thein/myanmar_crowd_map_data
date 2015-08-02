@@ -22,6 +22,72 @@ html { height: 100% }
 body { height: 100% }
 #map-container { height: 100% }
 </style>
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=visualization"></script>
+    <script>
+// Adding 500 Data Points
+var map, pointarray, heatmap;
+
+<?php
+      include "getPoints.php";
+    ?>
+
+
+function initialize() {
+  var mapOptions = {
+    zoom: 6,
+    center: new google.maps.LatLng(19.829667, 95.967915)
+  };
+
+  map = new google.maps.Map(document.getElementById('map-container'),
+      mapOptions);
+
+  var pointArray = new google.maps.MVCArray(mapData);
+
+  heatmap = new google.maps.visualization.HeatmapLayer({
+    data: pointArray
+  });
+
+  heatmap.setMap(map);
+}
+
+function toggleHeatmap() {
+  heatmap.setMap(heatmap.getMap() ? null : map);
+}
+
+function changeGradient() {
+  var gradient = [
+    'rgba(0, 255, 255, 0)',
+    'rgba(0, 255, 255, 1)',
+    'rgba(0, 191, 255, 1)',
+    'rgba(0, 127, 255, 1)',
+    'rgba(0, 63, 255, 1)',
+    'rgba(0, 0, 255, 1)',
+    'rgba(0, 0, 223, 1)',
+    'rgba(0, 0, 191, 1)',
+    'rgba(0, 0, 159, 1)',
+    'rgba(0, 0, 127, 1)',
+    'rgba(63, 0, 91, 1)',
+    'rgba(127, 0, 63, 1)',
+    'rgba(191, 0, 31, 1)',
+    'rgba(255, 0, 0, 1)'
+  ]
+  heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
+}
+
+function changeRadius() {
+  heatmap.set('radius', heatmap.get('radius') ? null : 20);
+}
+
+function changeOpacity() {
+  heatmap.set('opacity', heatmap.get('opacity') ? null : 0.2);
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+
+
   </head>
 
   <body>
@@ -49,7 +115,7 @@ body { height: 100% }
     </nav>
 
     <!-- Begin page content -->    
-          <div id="map-container" class="col-md-12"></div>
+          <div id="map-container"></div>
 
     <footer class="footer">
       <div class="container">
@@ -63,31 +129,7 @@ body { height: 100% }
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="bootstrap-3.3.5-dist/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
 
-    <script src="https://maps.google.com/maps/api/js?sensor=true"></script>
-    <script>  
- 
-      function init_map() {
-      var var_location = new google.maps.LatLng(19.829667, 95.967915);
-   
-          var var_mapoptions = {
-            center: var_location,
-            zoom: 6
-          };
-   
-      var var_marker = new google.maps.Marker({
-        position: var_location,
-        map: var_map,
-        title:"Venice"});
-   
-          var var_map = new google.maps.Map(document.getElementById("map-container"),
-              var_mapoptions);
-   
-      var_marker.setMap(null); 
-   
-        }
-   
-        google.maps.event.addDomListener(window, 'load', init_map);
-      
+    <script>      
       $( "#footer-count" ).load( "getContributions.php" );
     </script>
 
