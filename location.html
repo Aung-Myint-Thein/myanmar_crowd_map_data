@@ -110,9 +110,11 @@ body { height: 100% }
             data: {lat: results[0].geometry.location.G, long: results[0].geometry.location.K}
           })
           .done(function(){
+            ga('send', 'event', 'Save data', 'Save', 'SaveSuccessfulSecond');
             alert("Saved your input. Thanks for helping!");
           });
         } else {
+          ga('send', 'event', 'Save data', 'Save', 'SaveFailed');
           alert('Geocode was not successful for the following reason: ' + status);
         }
       });
@@ -126,9 +128,11 @@ body { height: 100% }
         data: {lat: latitude, long: longitude}
       })
       .done(function(){
+        ga('send', 'event', 'Save data', 'Save', 'SaveSuccessfulOnce');
         alert("Saved your input. Thanks for helping!");
       });
     } else {
+      ga('send', 'event', 'Save data', 'Save', 'SaveWithoutLatLong');
       alert("Will try to geocode the location now.");
       codeAddress();
     }
